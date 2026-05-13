@@ -25,12 +25,21 @@ class App {
     } else {
       // Show birth date modal
       this.ui.showBirthDateModal();
+      
+      // Bind submit button
       this.ui.elements.birthDateSubmitBtn?.addEventListener('click', () => this.handleBirthDateSubmit());
       
-      // Also handle Enter key
+      // Handle Enter key
       this.ui.elements.birthDateInput?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           this.handleBirthDateSubmit();
+        }
+      });
+      
+      // Prevent closing modal by clicking outside
+      this.ui.elements.birthDateModal?.addEventListener('click', (e) => {
+        if (e.target === this.ui.elements.birthDateModal) {
+          e.stopPropagation();
         }
       });
       
